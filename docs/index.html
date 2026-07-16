@@ -3,116 +3,116 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Conector Drive (OAuth2) — Ruvic</title>
+  <title data-i18n="doc_title">Conector Drive (OAuth2) — Ruvic</title>
   <link rel="stylesheet" href="assets/ruvic.css">
 </head>
 <body class="guide">
   <main class="ruvic-container">
 
     <nav class="ruvic-toc" aria-label="Índice">
-      <h2>Contenido</h2>
+      <h2 data-i18n="toc_title">Contenido</h2>
       <ol>
-        <li><a href="#que-es">¿Qué es y para qué sirve?</a></li>
-        <li><a href="#prerrequisitos">Prerrequisitos</a></li>
-        <li><a href="#configuracion-fabricante">Configuración en el fabricante</a></li>
-        <li><a href="#permisos">Permisos requeridos</a></li>
-        <li><a href="#configuracion-ruvic">Configuración en Ruvic</a></li>
-        <li><a href="#verificacion">Verificación</a></li>
-        <li><a href="#solucion-problemas">Solución de problemas</a></li>
-        <li><a href="#faq-seguridad">Preguntas frecuentes y notas de seguridad</a></li>
+        <li><a href="#que-es" data-i18n="toc.que_es">¿Qué es y para qué sirve?</a></li>
+        <li><a href="#prerrequisitos" data-i18n="toc.prerrequisitos">Prerrequisitos</a></li>
+        <li><a href="#configuracion-fabricante" data-i18n="toc.configuracion_fabricante">Configuración en el fabricante</a></li>
+        <li><a href="#permisos" data-i18n="toc.permisos">Permisos requeridos</a></li>
+        <li><a href="#configuracion-ruvic" data-i18n="toc.configuracion_ruvic">Configuración en Ruvic</a></li>
+        <li><a href="#verificacion" data-i18n="toc.verificacion">Verificación</a></li>
+        <li><a href="#solucion-problemas" data-i18n="toc.solucion_problemas">Solución de problemas</a></li>
+        <li><a href="#faq-seguridad" data-i18n="toc.faq_seguridad">Preguntas frecuentes y notas de seguridad</a></li>
       </ol>
     </nav>
 
-    <h1>Drive (OAuth2)</h1>
+    <h1 data-i18n="guide_title">Drive (OAuth2)</h1>
     <p class="guide-updated">{{ULTIMA_ACTUALIZACION}}</p>
 
     <!-- ============ 1. QUÉ ES ============ -->
     <section>
-      <h2 id="que-es">¿Qué es y para qué sirve?</h2>
+      <h2 id="que-es" data-i18n="section.que_es">¿Qué es y para qué sirve?</h2>
 
-      <p>El conector Drive (OAuth2) permite que el agente de Ruvic liste, lea, descargue y suba archivos en <strong>tu propio Google Drive</strong> — una cuenta personal (@gmail.com) o un usuario individual de Google Workspace — sin necesitar acceso al Admin Console ni a un superadministrador. Una vez configurado, puedes pedirle al agente cosas como:</p>
+      <p data-i18n="que_es.intro">El conector Drive (OAuth2) permite que el agente de Ruvic liste, lea, descargue y suba archivos en <strong>tu propio Google Drive</strong> — una cuenta personal (@gmail.com) o un usuario individual de Google Workspace — sin necesitar acceso al Admin Console ni a un superadministrador. Una vez configurado, puedes pedirle al agente cosas como:</p>
       <ul>
-        <li>"Busca en mi Drive los archivos que contengan 'factura' en el nombre."</li>
-        <li>"Descarga el último reporte mensual que subí."</li>
-        <li>"Sube este archivo a mi carpeta de reportes."</li>
+        <li data-i18n="que_es.li1">"Busca en mi Drive los archivos que contengan 'factura' en el nombre."</li>
+        <li data-i18n="que_es.li2">"Descarga el último reporte mensual que subí."</li>
+        <li data-i18n="que_es.li3">"Sube este archivo a mi carpeta de reportes."</li>
       </ul>
-      <p>Operaciones soportadas:</p>
+      <p data-i18n="que_es.ops_lead">Operaciones soportadas:</p>
 
       <table>
         <thead>
           <tr>
-            <th>Operación</th>
-            <th>Qué hace</th>
+            <th data-i18n="table.operacion">Operación</th>
+            <th data-i18n="table.que_hace">Qué hace</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td><code>file.list</code></td>
-            <td>Busca/lista archivos usando filtros (sintaxis de búsqueda de Drive)</td>
+            <td data-i18n="op.list">Busca/lista archivos usando filtros (sintaxis de búsqueda de Drive)</td>
           </tr>
           <tr>
             <td><code>file.read</code></td>
-            <td>Lee los metadatos de un archivo (nombre, tipo, dueño, tamaño, etc.)</td>
+            <td data-i18n="op.read">Lee los metadatos de un archivo (nombre, tipo, dueño, tamaño, etc.)</td>
           </tr>
           <tr>
             <td><code>file.download</code></td>
-            <td>Descarga el contenido de un archivo a disco local</td>
+            <td data-i18n="op.download">Descarga el contenido de un archivo a disco local</td>
           </tr>
           <tr>
             <td><code>file.upload</code></td>
-            <td>Sube un archivo local a tu Drive (máx. 20 MB)</td>
+            <td data-i18n="op.upload">Sube un archivo local a tu Drive (máx. 20 MB)</td>
           </tr>
         </tbody>
       </table>
 
       <div class="callout callout-info">
-        <span class="callout-title">¿Necesitas administrar varios buzones de un dominio Workspace?</span>
-        Este conector solo autoriza <strong>una cuenta a la vez</strong>. Si tu caso es "una empresa, varios usuarios, una sola credencial administrada por TI", usa en su lugar el conector <strong>Drive (Google Workspace — cuenta de servicio)</strong>.
+        <span class="callout-title" data-i18n="callout.varios.title">¿Necesitas administrar varios buzones de un dominio Workspace?</span>
+        <span data-i18n="callout.varios.body">Este conector solo autoriza <strong>una cuenta a la vez</strong>. Si tu caso es "una empresa, varios usuarios, una sola credencial administrada por TI", usa en su lugar el conector <strong>Drive (Google Workspace — cuenta de servicio)</strong>.</span>
       </div>
     </section>
 
     <!-- ============ 2. PRERREQUISITOS ============ -->
     <section>
-      <h2 id="prerrequisitos">Prerrequisitos</h2>
+      <h2 id="prerrequisitos" data-i18n="section.prerrequisitos">Prerrequisitos</h2>
 
       <ul>
-        <li>Una cuenta de Google (personal @gmail.com o de Google Workspace).</li>
-        <li>Si usas el modo "Autorizar con Google" (recomendado): nada más, la plataforma ya tiene su propia app OAuth configurada.</li>
-        <li>Si usas "Usar credenciales propias" o pruebas locales: acceso a <strong>Google Cloud Console</strong> para crear un cliente OAuth (no requiere superadministrador ni Google Workspace).</li>
+        <li data-i18n="prereq.li1">Una cuenta de Google (personal @gmail.com o de Google Workspace).</li>
+        <li data-i18n="prereq.li2">Si usas el modo "Autorizar con Google" (recomendado): nada más, la plataforma ya tiene su propia app OAuth configurada.</li>
+        <li data-i18n="prereq.li3">Si usas "Usar credenciales propias" o pruebas locales: acceso a <strong>Google Cloud Console</strong> para crear un cliente OAuth (no requiere superadministrador ni Google Workspace).</li>
       </ul>
     </section>
 
     <!-- ============ 3. CONFIGURACIÓN EN EL FABRICANTE ============ -->
     <section>
-      <h2 id="configuracion-fabricante">Configuración en el fabricante</h2>
+      <h2 id="configuracion-fabricante" data-i18n="section.configuracion_fabricante">Configuración en el fabricante</h2>
 
-      <p>Si usas el modo <strong>"Autorizar con Google"</strong> (recomendado), sáltate esta sección — la plataforma ya tiene una app OAuth propia, solo necesitas iniciar sesión y aceptar los permisos. Esta sección aplica si eliges "Usar credenciales propias" o quieres probar el conector localmente con <code>get_refresh_token.py</code>.</p>
+      <p data-i18n="fab.intro">Si usas el modo <strong>"Autorizar con Google"</strong> (recomendado), sáltate esta sección — la plataforma ya tiene una app OAuth propia, solo necesitas iniciar sesión y aceptar los permisos. Esta sección aplica si eliges "Usar credenciales propias" o quieres probar el conector localmente con <code>get_refresh_token.py</code>.</p>
 
       <ol class="ruvic-steps">
         <li>
-          <strong>Crea (o selecciona) un proyecto en Google Cloud Console.</strong>
-          <p>Ve a <a href="https://console.cloud.google.com/projectcreate" target="_blank" rel="noopener">console.cloud.google.com/projectcreate</a> y crea un proyecto (o reutiliza uno existente).</p>
+          <strong data-i18n="step1.title">Crea (o selecciona) un proyecto en Google Cloud Console.</strong>
+          <p data-i18n="step1.body">Ve a <a href="https://console.cloud.google.com/projectcreate" target="_blank" rel="noopener">console.cloud.google.com/projectcreate</a> y crea un proyecto (o reutiliza uno existente).</p>
         </li>
 
         <li>
-          <strong>Habilita la Google Drive API.</strong>
-          <p>En el menú <em>APIs y servicios → Biblioteca</em>, busca "Google Drive API" y pulsa <em>Habilitar</em>.</p>
+          <strong data-i18n="step2.title">Habilita la Google Drive API.</strong>
+          <p data-i18n="step2.body">En el menú <em>APIs y servicios → Biblioteca</em>, busca "Google Drive API" y pulsa <em>Habilitar</em>.</p>
         </li>
 
         <li>
-          <strong>Configura la pantalla de consentimiento OAuth.</strong>
-          <p>En <em>APIs y servicios → Pantalla de consentimiento OAuth</em>, completa los datos básicos. Si la app queda en modo "Prueba", agrega tu correo (y el de cualquier otro usuario que vaya a autorizar el conector) en la sección <strong>Usuarios de prueba</strong>.</p>
+          <strong data-i18n="step3.title">Configura la pantalla de consentimiento OAuth.</strong>
+          <p data-i18n="step3.body">En <em>APIs y servicios → Pantalla de consentimiento OAuth</em>, completa los datos básicos. Si la app queda en modo "Prueba", agrega tu correo (y el de cualquier otro usuario que vaya a autorizar el conector) en la sección <strong>Usuarios de prueba</strong>.</p>
         </li>
 
         <li>
-          <strong>Crea el cliente OAuth.</strong>
-          <p>En <em>APIs y servicios → Credenciales → Crear credenciales → ID de cliente de OAuth</em>:</p>
+          <strong data-i18n="step4.title">Crea el cliente OAuth.</strong>
+          <p data-i18n="step4.body">En <em>APIs y servicios → Credenciales → Crear credenciales → ID de cliente de OAuth</em>:</p>
           <ul>
-            <li>Para "Usar credenciales propias" en Ruvic: tipo <strong>Aplicación web</strong>, con URI de redirección <code>{WEB_URL}/api/v1/connectors/oauth/callback</code>.</li>
-            <li>Para pruebas locales con <code>get_refresh_token.py</code>: tipo <strong>Aplicación de escritorio</strong>.</li>
+            <li data-i18n="step4.li1">Para "Usar credenciales propias" en Ruvic: tipo <strong>Aplicación web</strong>, con URI de redirección <code>{WEB_URL}/api/v1/connectors/oauth/callback</code>.</li>
+            <li data-i18n="step4.li2">Para pruebas locales con <code>get_refresh_token.py</code>: tipo <strong>Aplicación de escritorio</strong>.</li>
           </ul>
-          <p>Copia el <strong>Client ID</strong> y <strong>Client Secret</strong> generados.</p>
-          <div class="screenshot-placeholder">
+          <p data-i18n="step4.after">Copia el <strong>Client ID</strong> y <strong>Client Secret</strong> generados.</p>
+          <div class="screenshot-placeholder" data-i18n="ph.client">
             [ Captura: pantalla de credenciales de Google Cloud Console con el cliente OAuth creado — reemplazar por assets/img/drive-oauth-client.png ]
           </div>
         </li>
@@ -121,120 +121,120 @@
 
     <!-- ============ 4. PERMISOS ============ -->
     <section>
-      <h2 id="permisos">Permisos requeridos</h2>
+      <h2 id="permisos" data-i18n="section.permisos">Permisos requeridos</h2>
 
-      <p>El conector solicita el scope completo de Drive para poder listar, leer, descargar y subir archivos.</p>
+      <p data-i18n="permisos.intro">El conector solicita el scope completo de Drive para poder listar, leer, descargar y subir archivos.</p>
 
       <table>
         <thead>
           <tr>
-            <th>Scope</th>
-            <th>Para qué lo usa el conector</th>
+            <th data-i18n="table.scope">Scope</th>
+            <th data-i18n="table.scope_uso">Para qué lo usa el conector</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td><code>drive</code></td>
-            <td>Buscar y listar archivos (<code>file.list</code>), leer metadatos (<code>file.read</code>), descargar (<code>file.download</code>) y subir archivos (<code>file.upload</code>)</td>
+            <td data-i18n="scope.drive">Buscar y listar archivos (<code>file.list</code>), leer metadatos (<code>file.read</code>), descargar (<code>file.download</code>) y subir archivos (<code>file.upload</code>)</td>
           </tr>
           <tr>
             <td><code>openid</code>, <code>email</code></td>
-            <td>Identificar qué cuenta autorizó el conector (mostrado en la UI de Ruvic)</td>
+            <td data-i18n="scope.openid">Identificar qué cuenta autorizó el conector (mostrado en la UI de Ruvic)</td>
           </tr>
         </tbody>
       </table>
 
       <div class="callout callout-warning">
-        <span class="callout-title">Este scope da acceso completo de lectura y escritura</span>
-        A diferencia de scopes más restringidos como <code>drive.file</code> (solo archivos creados por la app), <code>drive</code> permite ver, descargar, modificar y subir <strong>cualquier</strong> archivo al que la cuenta autorizada tenga acceso.
+        <span class="callout-title" data-i18n="callout.acceso.title">Este scope da acceso completo de lectura y escritura</span>
+        <span data-i18n="callout.acceso.body">A diferencia de scopes más restringidos como <code>drive.file</code> (solo archivos creados por la app), <code>drive</code> permite ver, descargar, modificar y subir <strong>cualquier</strong> archivo al que la cuenta autorizada tenga acceso.</span>
       </div>
     </section>
 
     <!-- ============ 5. CONFIGURACIÓN EN RUVIC ============ -->
     <section>
-      <h2 id="configuracion-ruvic">Configuración en Ruvic</h2>
+      <h2 id="configuracion-ruvic" data-i18n="section.configuracion_ruvic">Configuración en Ruvic</h2>
 
-      <p>Entra a <strong>Settings → Conectores</strong>, busca la tarjeta <strong>Drive (OAuth2)</strong> y pulsa <strong>Configurar</strong>. Elige uno de los 3 modos:</p>
+      <p data-i18n="ruvic.intro">Entra a <strong>Settings → Conectores</strong>, busca la tarjeta <strong>Drive (OAuth2)</strong> y pulsa <strong>Configurar</strong>. Elige uno de los 3 modos:</p>
 
       <table>
         <thead>
           <tr>
-            <th>Modo</th>
-            <th>Cuándo usarlo</th>
+            <th data-i18n="table.modo">Modo</th>
+            <th data-i18n="table.cuando">Cuándo usarlo</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Autorizar con Google <em>(recomendado)</em></td>
-            <td>El camino más simple: guarda y pulsa <strong>Autorizar</strong>, inicia sesión con tu cuenta de Google y acepta los permisos. No requiere Google Cloud Console.</td>
+            <td data-i18n="modo1.label">Autorizar con Google <em>(recomendado)</em></td>
+            <td data-i18n="modo1.desc">El camino más simple: guarda y pulsa <strong>Autorizar</strong>, inicia sesión con tu cuenta de Google y acepta los permisos. No requiere Google Cloud Console.</td>
           </tr>
           <tr>
-            <td>Usar credenciales propias</td>
-            <td>Si tu equipo prefiere usar su propia app OAuth en vez de la de Ruvic. Pega el Client ID/Secret de la sección anterior y pulsa Autorizar.</td>
+            <td data-i18n="modo2.label">Usar credenciales propias</td>
+            <td data-i18n="modo2.desc">Si tu equipo prefiere usar su propia app OAuth en vez de la de Ruvic. Pega el Client ID/Secret de la sección anterior y pulsa Autorizar.</td>
           </tr>
           <tr>
-            <td>Refresh token manual</td>
-            <td>Para migraciones o pruebas locales: pega directamente un <code>refresh_token</code> ya generado con <code>get_refresh_token.py</code>.</td>
+            <td data-i18n="modo3.label">Refresh token manual</td>
+            <td data-i18n="modo3.desc">Para migraciones o pruebas locales: pega directamente un <code>refresh_token</code> ya generado con <code>get_refresh_token.py</code>.</td>
           </tr>
         </tbody>
       </table>
 
-      <p>Guarda y pulsa <span class="ruvic-button">Probar conexión</span> — la plataforma confirmará el correo de la cuenta autorizada.</p>
+      <p data-i18n="ruvic.probar">Guarda y pulsa <span class="ruvic-button">Probar conexión</span> — la plataforma confirmará el correo de la cuenta autorizada.</p>
 
-      <div class="screenshot-placeholder">
+      <div class="screenshot-placeholder" data-i18n="ph.form">
         [ Captura: formulario del conector Drive (OAuth2) en Settings → Conectores — reemplazar por assets/img/drive-oauth-form.png ]
       </div>
     </section>
 
     <!-- ============ 6. VERIFICACIÓN ============ -->
     <section>
-      <h2 id="verificacion">Verificación</h2>
+      <h2 id="verificacion" data-i18n="section.verificacion">Verificación</h2>
 
       <ol class="ruvic-steps">
         <li>
-          <strong>Test de conexión exitoso.</strong>
-          <p>El botón <em>Probar conexión</em> debe responder: <em>"Conexión exitosa al Drive de tucorreo@gmail.com"</em>. La tarjeta del conector cambia a estado <strong>Configurado</strong>.</p>
+          <strong data-i18n="verif1.title">Test de conexión exitoso.</strong>
+          <p data-i18n="verif1.body">El botón <em>Probar conexión</em> debe responder: <em>"Conexión exitosa al Drive de tucorreo@gmail.com"</em>. La tarjeta del conector cambia a estado <strong>Configurado</strong>.</p>
         </li>
         <li>
-          <strong>Automatización mínima de prueba.</strong>
-          <p>Abre una conversación nueva con el agente y pídele:</p>
-          <blockquote><em>"Lista los últimos 5 archivos de mi Drive."</em></blockquote>
-          <p>Si el agente responde con archivos reales de tu cuenta, la conexión quedó operativa de punta a punta.</p>
+          <strong data-i18n="verif2.title">Automatización mínima de prueba.</strong>
+          <p data-i18n="verif2.body">Abre una conversación nueva con el agente y pídele:</p>
+          <blockquote data-i18n="verif2.quote"><em>"Lista los últimos 5 archivos de mi Drive."</em></blockquote>
+          <p data-i18n="verif2.after">Si el agente responde con archivos reales de tu cuenta, la conexión quedó operativa de punta a punta.</p>
         </li>
       </ol>
     </section>
 
     <!-- ============ 7. SOLUCIÓN DE PROBLEMAS ============ -->
     <section>
-      <h2 id="solucion-problemas">Solución de problemas</h2>
+      <h2 id="solucion-problemas" data-i18n="section.solucion_problemas">Solución de problemas</h2>
 
       <table>
         <thead>
           <tr>
-            <th>Mensaje / síntoma</th>
-            <th>Causa probable y solución</th>
+            <th data-i18n="table.sintoma">Mensaje / síntoma</th>
+            <th data-i18n="table.causa">Causa probable y solución</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>"Error 403: access_denied" al autorizar</td>
-            <td>Si usas "Usar credenciales propias" y la app OAuth está en modo Prueba, tu correo debe estar agregado en <strong>Usuarios de prueba</strong> de la pantalla de consentimiento (Google Cloud Console).</td>
+            <td data-i18n="prob1.s">"Error 403: access_denied" al autorizar</td>
+            <td data-i18n="prob1.f">Si usas "Usar credenciales propias" y la app OAuth está en modo Prueba, tu correo debe estar agregado en <strong>Usuarios de prueba</strong> de la pantalla de consentimiento (Google Cloud Console).</td>
           </tr>
           <tr>
-            <td>"La Google Drive API no está habilitada en el proyecto de Google Cloud…"</td>
-            <td>Falta habilitar la Google Drive API en el proyecto (paso 2 de la sección anterior, solo aplica si usas credenciales propias). El mensaje del conector incluye el enlace directo de activación; habilítala y espera 1-2 minutos.</td>
+            <td data-i18n="prob2.s">"La Google Drive API no está habilitada en el proyecto de Google Cloud…"</td>
+            <td data-i18n="prob2.f">Falta habilitar la Google Drive API en el proyecto (paso 2 de la sección anterior, solo aplica si usas credenciales propias). El mensaje del conector incluye el enlace directo de activación; habilítala y espera 1-2 minutos.</td>
           </tr>
           <tr>
-            <td>"Autenticación fallida: el refresh token puede estar revocado, vencido…"</td>
-            <td>El usuario revocó el acceso en <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">myaccount.google.com/permissions</a>, cambió su contraseña, o pasaron 6 meses sin uso con una app en modo Prueba. Solución: vuelve a autorizar el conector en Settings → Conectores.</td>
+            <td data-i18n="prob3.s">"Autenticación fallida: el refresh token puede estar revocado, vencido…"</td>
+            <td data-i18n="prob3.f">El usuario revocó el acceso en <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">myaccount.google.com/permissions</a>, cambió su contraseña, o pasaron 6 meses sin uso con una app en modo Prueba. Solución: vuelve a autorizar el conector en Settings → Conectores.</td>
           </tr>
           <tr>
-            <td>"Drive API no respondió correctamente (HTTP 429)"</td>
-            <td>Límite de cuota temporal de la API. Es transitorio; el agente puede reintentar en unos segundos.</td>
+            <td data-i18n="prob4.s">"Drive API no respondió correctamente (HTTP 429)"</td>
+            <td data-i18n="prob4.f">Límite de cuota temporal de la API. Es transitorio; el agente puede reintentar en unos segundos.</td>
           </tr>
           <tr>
-            <td>El conector aparece "Sin configurar" tras guardar</td>
-            <td>Algún campo obligatorio quedó vacío, o no se completó el paso de Autorizar. Ábrelo de nuevo y completa el flujo.</td>
+            <td data-i18n="prob5.s">El conector aparece "Sin configurar" tras guardar</td>
+            <td data-i18n="prob5.f">Algún campo obligatorio quedó vacío, o no se completó el paso de Autorizar. Ábrelo de nuevo y completa el flujo.</td>
           </tr>
         </tbody>
       </table>
@@ -242,26 +242,224 @@
 
     <!-- ============ 8. FAQ Y SEGURIDAD ============ -->
     <section>
-      <h2 id="faq-seguridad">Preguntas frecuentes y notas de seguridad</h2>
+      <h2 id="faq-seguridad" data-i18n="section.faq_seguridad">Preguntas frecuentes y notas de seguridad</h2>
 
-      <h3>¿Qué tan sensible es el refresh token?</h3>
-      <p>Da acceso completo de lectura y escritura a tu Drive mientras no lo revoques. Trátalo como una contraseña — nunca lo compartas por chat, correo o capturas de pantalla. La plataforma lo almacena cifrado.</p>
+      <h3 data-i18n="faq1.q">¿Qué tan sensible es el refresh token?</h3>
+      <p data-i18n="faq1.a">Da acceso completo de lectura y escritura a tu Drive mientras no lo revoques. Trátalo como una contraseña — nunca lo compartas por chat, correo o capturas de pantalla. La plataforma lo almacena cifrado.</p>
 
-      <h3>¿Puedo usarlo con varios correos a la vez?</h3>
-      <p>Sí, pero cada correo necesita su <strong>propia instancia</strong> del conector (autorizada por separado). Si necesitas administrar muchos usuarios de un mismo dominio Workspace sin repetir la autorización uno por uno, usa el conector <strong>Drive (Google Workspace — cuenta de servicio)</strong> en su lugar.</p>
+      <h3 data-i18n="faq2.q">¿Puedo usarlo con varios correos a la vez?</h3>
+      <p data-i18n="faq2.a">Sí, pero cada correo necesita su <strong>propia instancia</strong> del conector (autorizada por separado). Si necesitas administrar muchos usuarios de un mismo dominio Workspace sin repetir la autorización uno por uno, usa el conector <strong>Drive (Google Workspace — cuenta de servicio)</strong> en su lugar.</p>
 
-      <h3>¿El agente puede eliminar o sobrescribir archivos?</h3>
-      <p>El conector solo expone <code>file.list</code>, <code>file.read</code>, <code>file.download</code> y <code>file.upload</code> — no expone eliminación ni sobrescritura. El scope subyacente sí lo permitiría técnicamente, pero el código generado no incluye esas operaciones a menos que se pidan explícitamente y se extienda el conector.</p>
+      <h3 data-i18n="faq3.q">¿El agente puede eliminar o sobrescribir archivos?</h3>
+      <p data-i18n="faq3.a">El conector solo expone <code>file.list</code>, <code>file.read</code>, <code>file.download</code> y <code>file.upload</code> — no expone eliminación ni sobrescritura. El scope subyacente sí lo permitiría técnicamente, pero el código generado no incluye esas operaciones a menos que se pidan explícitamente y se extienda el conector.</p>
 
-      <h3>¿Cómo revoco el acceso?</h3>
-      <p>Ve a <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">myaccount.google.com/permissions</a>, busca la app autorizada y quita el acceso. También puedes simplemente eliminar la instancia del conector en Settings → Conectores.</p>
+      <h3 data-i18n="faq4.q">¿Cómo revoco el acceso?</h3>
+      <p data-i18n="faq4.a">Ve a <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">myaccount.google.com/permissions</a>, busca la app autorizada y quita el acceso. También puedes simplemente eliminar la instancia del conector en Settings → Conectores.</p>
 
       <div class="callout callout-warning">
-        <span class="callout-title">Buenas prácticas</span>
-        Usa el modo "Autorizar con Google" salvo que tengas una razón concreta para usar tu propia app OAuth; revisa periódicamente en myaccount.google.com/permissions qué apps tienen acceso a tu cuenta; y revoca el acceso de instancias que ya no uses.
+        <span class="callout-title" data-i18n="callout.practicas.title">Buenas prácticas</span>
+        <span data-i18n="callout.practicas.body">Usa el modo "Autorizar con Google" salvo que tengas una razón concreta para usar tu propia app OAuth; revisa periódicamente en myaccount.google.com/permissions qué apps tienen acceso a tu cuenta; y revoca el acceso de instancias que ya no uses.</span>
       </div>
     </section>
 
   </main>
+  <script>
+    const I18N = {
+  "es": {
+    "doc_title": "Conector Drive (OAuth2) — Ruvic",
+    "toc_title": "Contenido",
+    "toc.que_es": "¿Qué es y para qué sirve?",
+    "toc.prerrequisitos": "Prerrequisitos",
+    "toc.configuracion_fabricante": "Configuración en el fabricante",
+    "toc.permisos": "Permisos requeridos",
+    "toc.configuracion_ruvic": "Configuración en Ruvic",
+    "toc.verificacion": "Verificación",
+    "toc.solucion_problemas": "Solución de problemas",
+    "toc.faq_seguridad": "Preguntas frecuentes y notas de seguridad",
+    "guide_title": "Drive (OAuth2)",
+    "section.que_es": "¿Qué es y para qué sirve?",
+    "que_es.intro": "El conector Drive (OAuth2) permite que el agente de Ruvic liste, lea, descargue y suba archivos en <strong>tu propio Google Drive</strong> — una cuenta personal (@gmail.com) o un usuario individual de Google Workspace — sin necesitar acceso al Admin Console ni a un superadministrador. Una vez configurado, puedes pedirle al agente cosas como:",
+    "que_es.li1": "\"Busca en mi Drive los archivos que contengan 'factura' en el nombre.\"",
+    "que_es.li2": "\"Descarga el último reporte mensual que subí.\"",
+    "que_es.li3": "\"Sube este archivo a mi carpeta de reportes.\"",
+    "que_es.ops_lead": "Operaciones soportadas:",
+    "table.operacion": "Operación",
+    "table.que_hace": "Qué hace",
+    "op.list": "Busca/lista archivos usando filtros (sintaxis de búsqueda de Drive)",
+    "op.read": "Lee los metadatos de un archivo (nombre, tipo, dueño, tamaño, etc.)",
+    "op.download": "Descarga el contenido de un archivo a disco local",
+    "op.upload": "Sube un archivo local a tu Drive (máx. 20 MB)",
+    "callout.varios.title": "¿Necesitas administrar varios buzones de un dominio Workspace?",
+    "callout.varios.body": "Este conector solo autoriza <strong>una cuenta a la vez</strong>. Si tu caso es \"una empresa, varios usuarios, una sola credencial administrada por TI\", usa en su lugar el conector <strong>Drive (Google Workspace — cuenta de servicio)</strong>.",
+    "section.prerrequisitos": "Prerrequisitos",
+    "prereq.li1": "Una cuenta de Google (personal @gmail.com o de Google Workspace).",
+    "prereq.li2": "Si usas el modo \"Autorizar con Google\" (recomendado): nada más, la plataforma ya tiene su propia app OAuth configurada.",
+    "prereq.li3": "Si usas \"Usar credenciales propias\" o pruebas locales: acceso a <strong>Google Cloud Console</strong> para crear un cliente OAuth (no requiere superadministrador ni Google Workspace).",
+    "section.configuracion_fabricante": "Configuración en el fabricante",
+    "fab.intro": "Si usas el modo <strong>\"Autorizar con Google\"</strong> (recomendado), sáltate esta sección — la plataforma ya tiene una app OAuth propia, solo necesitas iniciar sesión y aceptar los permisos. Esta sección aplica si eliges \"Usar credenciales propias\" o quieres probar el conector localmente con <code>get_refresh_token.py</code>.",
+    "step1.title": "Crea (o selecciona) un proyecto en Google Cloud Console.",
+    "step1.body": "Ve a <a href=\"https://console.cloud.google.com/projectcreate\" target=\"_blank\" rel=\"noopener\">console.cloud.google.com/projectcreate</a> y crea un proyecto (o reutiliza uno existente).",
+    "step2.title": "Habilita la Google Drive API.",
+    "step2.body": "En el menú <em>APIs y servicios → Biblioteca</em>, busca \"Google Drive API\" y pulsa <em>Habilitar</em>.",
+    "step3.title": "Configura la pantalla de consentimiento OAuth.",
+    "step3.body": "En <em>APIs y servicios → Pantalla de consentimiento OAuth</em>, completa los datos básicos. Si la app queda en modo \"Prueba\", agrega tu correo (y el de cualquier otro usuario que vaya a autorizar el conector) en la sección <strong>Usuarios de prueba</strong>.",
+    "step4.title": "Crea el cliente OAuth.",
+    "step4.body": "En <em>APIs y servicios → Credenciales → Crear credenciales → ID de cliente de OAuth</em>:",
+    "step4.li1": "Para \"Usar credenciales propias\" en Ruvic: tipo <strong>Aplicación web</strong>, con URI de redirección <code>{WEB_URL}/api/v1/connectors/oauth/callback</code>.",
+    "step4.li2": "Para pruebas locales con <code>get_refresh_token.py</code>: tipo <strong>Aplicación de escritorio</strong>.",
+    "step4.after": "Copia el <strong>Client ID</strong> y <strong>Client Secret</strong> generados.",
+    "ph.client": "[ Captura: pantalla de credenciales de Google Cloud Console con el cliente OAuth creado — reemplazar por assets/img/drive-oauth-client.png ]",
+    "section.permisos": "Permisos requeridos",
+    "permisos.intro": "El conector solicita el scope completo de Drive para poder listar, leer, descargar y subir archivos.",
+    "table.scope": "Scope",
+    "table.scope_uso": "Para qué lo usa el conector",
+    "scope.drive": "Buscar y listar archivos (<code>file.list</code>), leer metadatos (<code>file.read</code>), descargar (<code>file.download</code>) y subir archivos (<code>file.upload</code>)",
+    "scope.openid": "Identificar qué cuenta autorizó el conector (mostrado en la UI de Ruvic)",
+    "callout.acceso.title": "Este scope da acceso completo de lectura y escritura",
+    "callout.acceso.body": "A diferencia de scopes más restringidos como <code>drive.file</code> (solo archivos creados por la app), <code>drive</code> permite ver, descargar, modificar y subir <strong>cualquier</strong> archivo al que la cuenta autorizada tenga acceso.",
+    "section.configuracion_ruvic": "Configuración en Ruvic",
+    "ruvic.intro": "Entra a <strong>Settings → Conectores</strong>, busca la tarjeta <strong>Drive (OAuth2)</strong> y pulsa <strong>Configurar</strong>. Elige uno de los 3 modos:",
+    "table.modo": "Modo",
+    "table.cuando": "Cuándo usarlo",
+    "modo1.label": "Autorizar con Google <em>(recomendado)</em>",
+    "modo1.desc": "El camino más simple: guarda y pulsa <strong>Autorizar</strong>, inicia sesión con tu cuenta de Google y acepta los permisos. No requiere Google Cloud Console.",
+    "modo2.label": "Usar credenciales propias",
+    "modo2.desc": "Si tu equipo prefiere usar su propia app OAuth en vez de la de Ruvic. Pega el Client ID/Secret de la sección anterior y pulsa Autorizar.",
+    "modo3.label": "Refresh token manual",
+    "modo3.desc": "Para migraciones o pruebas locales: pega directamente un <code>refresh_token</code> ya generado con <code>get_refresh_token.py</code>.",
+    "ruvic.probar": "Guarda y pulsa <span class=\"ruvic-button\">Probar conexión</span> — la plataforma confirmará el correo de la cuenta autorizada.",
+    "ph.form": "[ Captura: formulario del conector Drive (OAuth2) en Settings → Conectores — reemplazar por assets/img/drive-oauth-form.png ]",
+    "section.verificacion": "Verificación",
+    "verif1.title": "Test de conexión exitoso.",
+    "verif1.body": "El botón <em>Probar conexión</em> debe responder: <em>\"Conexión exitosa al Drive de tucorreo@gmail.com\"</em>. La tarjeta del conector cambia a estado <strong>Configurado</strong>.",
+    "verif2.title": "Automatización mínima de prueba.",
+    "verif2.body": "Abre una conversación nueva con el agente y pídele:",
+    "verif2.quote": "<em>\"Lista los últimos 5 archivos de mi Drive.\"</em>",
+    "verif2.after": "Si el agente responde con archivos reales de tu cuenta, la conexión quedó operativa de punta a punta.",
+    "section.solucion_problemas": "Solución de problemas",
+    "table.sintoma": "Mensaje / síntoma",
+    "table.causa": "Causa probable y solución",
+    "prob1.s": "\"Error 403: access_denied\" al autorizar",
+    "prob1.f": "Si usas \"Usar credenciales propias\" y la app OAuth está en modo Prueba, tu correo debe estar agregado en <strong>Usuarios de prueba</strong> de la pantalla de consentimiento (Google Cloud Console).",
+    "prob2.s": "\"La Google Drive API no está habilitada en el proyecto de Google Cloud…\"",
+    "prob2.f": "Falta habilitar la Google Drive API en el proyecto (paso 2 de la sección anterior, solo aplica si usas credenciales propias). El mensaje del conector incluye el enlace directo de activación; habilítala y espera 1-2 minutos.",
+    "prob3.s": "\"Autenticación fallida: el refresh token puede estar revocado, vencido…\"",
+    "prob3.f": "El usuario revocó el acceso en <a href=\"https://myaccount.google.com/permissions\" target=\"_blank\" rel=\"noopener\">myaccount.google.com/permissions</a>, cambió su contraseña, o pasaron 6 meses sin uso con una app en modo Prueba. Solución: vuelve a autorizar el conector en Settings → Conectores.",
+    "prob4.s": "\"Drive API no respondió correctamente (HTTP 429)\"",
+    "prob4.f": "Límite de cuota temporal de la API. Es transitorio; el agente puede reintentar en unos segundos.",
+    "prob5.s": "El conector aparece \"Sin configurar\" tras guardar",
+    "prob5.f": "Algún campo obligatorio quedó vacío, o no se completó el paso de Autorizar. Ábrelo de nuevo y completa el flujo.",
+    "section.faq_seguridad": "Preguntas frecuentes y notas de seguridad",
+    "faq1.q": "¿Qué tan sensible es el refresh token?",
+    "faq1.a": "Da acceso completo de lectura y escritura a tu Drive mientras no lo revoques. Trátalo como una contraseña — nunca lo compartas por chat, correo o capturas de pantalla. La plataforma lo almacena cifrado.",
+    "faq2.q": "¿Puedo usarlo con varios correos a la vez?",
+    "faq2.a": "Sí, pero cada correo necesita su <strong>propia instancia</strong> del conector (autorizada por separado). Si necesitas administrar muchos usuarios de un mismo dominio Workspace sin repetir la autorización uno por uno, usa el conector <strong>Drive (Google Workspace — cuenta de servicio)</strong> en su lugar.",
+    "faq3.q": "¿El agente puede eliminar o sobrescribir archivos?",
+    "faq3.a": "El conector solo expone <code>file.list</code>, <code>file.read</code>, <code>file.download</code> y <code>file.upload</code> — no expone eliminación ni sobrescritura. El scope subyacente sí lo permitiría técnicamente, pero el código generado no incluye esas operaciones a menos que se pidan explícitamente y se extienda el conector.",
+    "faq4.q": "¿Cómo revoco el acceso?",
+    "faq4.a": "Ve a <a href=\"https://myaccount.google.com/permissions\" target=\"_blank\" rel=\"noopener\">myaccount.google.com/permissions</a>, busca la app autorizada y quita el acceso. También puedes simplemente eliminar la instancia del conector en Settings → Conectores.",
+    "callout.practicas.title": "Buenas prácticas",
+    "callout.practicas.body": "Usa el modo \"Autorizar con Google\" salvo que tengas una razón concreta para usar tu propia app OAuth; revisa periódicamente en myaccount.google.com/permissions qué apps tienen acceso a tu cuenta; y revoca el acceso de instancias que ya no uses."
+  },
+  "en": {
+    "doc_title": "Drive (OAuth2) Connector — Ruvic",
+    "toc_title": "Contents",
+    "toc.que_es": "What it is and what it’s for",
+    "toc.prerrequisitos": "Prerequisites",
+    "toc.configuracion_fabricante": "Vendor / provider setup",
+    "toc.permisos": "Required permissions",
+    "toc.configuracion_ruvic": "Configuration in Ruvic",
+    "toc.verificacion": "Verification",
+    "toc.solucion_problemas": "Troubleshooting",
+    "toc.faq_seguridad": "FAQ and security notes",
+    "guide_title": "Drive (OAuth2)",
+    "section.que_es": "What it is and what it’s for",
+    "que_es.intro": "The Drive (OAuth2) connector lets the Ruvic agent list, read, download and upload files in <strong>your own Google Drive</strong> — a personal account (@gmail.com) or an individual Google Workspace user — without needing Admin Console access or a super admin. Once configured, you can ask the agent things like:",
+    "que_es.li1": "\"Search my Drive for files containing 'invoice' in the name.\"",
+    "que_es.li2": "\"Download the latest monthly report I uploaded.\"",
+    "que_es.li3": "\"Upload this file to my reports folder.\"",
+    "que_es.ops_lead": "Supported operations:",
+    "table.operacion": "Operation",
+    "table.que_hace": "What it does",
+    "op.list": "Searches/lists files using filters (Drive search syntax)",
+    "op.read": "Reads a file's metadata (name, type, owner, size, etc.)",
+    "op.download": "Downloads a file's content to local disk",
+    "op.upload": "Uploads a local file to your Drive (max 20 MB)",
+    "callout.varios.title": "Need to manage several mailboxes in a Workspace domain?",
+    "callout.varios.body": "This connector only authorizes <strong>one account at a time</strong>. If your case is \"one company, several users, a single IT-managed credential\", use the <strong>Drive (Google Workspace — service account)</strong> connector instead.",
+    "section.prerrequisitos": "Prerequisites",
+    "prereq.li1": "A Google account (personal @gmail.com or Google Workspace).",
+    "prereq.li2": "If you use the \"Authorize with Google\" mode (recommended): nothing else, the platform already has its own OAuth app configured.",
+    "prereq.li3": "If you use \"Use your own credentials\" or local testing: access to <strong>Google Cloud Console</strong> to create an OAuth client (does not require a super admin or Google Workspace).",
+    "section.configuracion_fabricante": "Vendor / provider setup",
+    "fab.intro": "If you use the <strong>\"Authorize with Google\"</strong> mode (recommended), skip this section — the platform already has its own OAuth app, you just need to sign in and accept the permissions. This section applies if you choose \"Use your own credentials\" or want to test the connector locally with <code>get_refresh_token.py</code>.",
+    "step1.title": "Create (or select) a project in Google Cloud Console.",
+    "step1.body": "Go to <a href=\"https://console.cloud.google.com/projectcreate\" target=\"_blank\" rel=\"noopener\">console.cloud.google.com/projectcreate</a> and create a project (or reuse an existing one).",
+    "step2.title": "Enable the Google Drive API.",
+    "step2.body": "In <em>APIs &amp; Services → Library</em>, search for \"Google Drive API\" and click <em>Enable</em>.",
+    "step3.title": "Configure the OAuth consent screen.",
+    "step3.body": "In <em>APIs &amp; Services → OAuth consent screen</em>, fill in the basic details. If the app stays in \"Testing\" mode, add your email (and that of any other user who will authorize the connector) under <strong>Test users</strong>.",
+    "step4.title": "Create the OAuth client.",
+    "step4.body": "In <em>APIs &amp; Services → Credentials → Create credentials → OAuth client ID</em>:",
+    "step4.li1": "For \"Use your own credentials\" in Ruvic: type <strong>Web application</strong>, with redirect URI <code>{WEB_URL}/api/v1/connectors/oauth/callback</code>.",
+    "step4.li2": "For local testing with <code>get_refresh_token.py</code>: type <strong>Desktop app</strong>.",
+    "step4.after": "Copy the generated <strong>Client ID</strong> and <strong>Client Secret</strong>.",
+    "ph.client": "[ Screenshot: Google Cloud Console credentials screen with the created OAuth client — replace with assets/img/drive-oauth-client.png ]",
+    "section.permisos": "Required permissions",
+    "permisos.intro": "The connector requests the full Drive scope in order to list, read, download and upload files.",
+    "table.scope": "Scope",
+    "table.scope_uso": "Why the connector needs it",
+    "scope.drive": "Search and list files (<code>file.list</code>), read metadata (<code>file.read</code>), download (<code>file.download</code>) and upload files (<code>file.upload</code>)",
+    "scope.openid": "Identify which account authorized the connector (shown in the Ruvic UI)",
+    "callout.acceso.title": "This scope grants full read and write access",
+    "callout.acceso.body": "Unlike more restricted scopes such as <code>drive.file</code> (only files created by the app), <code>drive</code> allows viewing, downloading, modifying and uploading <strong>any</strong> file the authorized account has access to.",
+    "section.configuracion_ruvic": "Configuration in Ruvic",
+    "ruvic.intro": "Go to <strong>Settings → Connectors</strong>, find the <strong>Drive (OAuth2)</strong> card and click <strong>Configure</strong>. Choose one of the 3 modes:",
+    "table.modo": "Mode",
+    "table.cuando": "When to use it",
+    "modo1.label": "Authorize with Google <em>(recommended)</em>",
+    "modo1.desc": "The simplest path: save and click <strong>Authorize</strong>, sign in with your Google account and accept the permissions. Does not require Google Cloud Console.",
+    "modo2.label": "Use your own credentials",
+    "modo2.desc": "If your team prefers to use its own OAuth app instead of Ruvic's. Paste the Client ID/Secret from the previous section and click Authorize.",
+    "modo3.label": "Manual refresh token",
+    "modo3.desc": "For migrations or local testing: paste a <code>refresh_token</code> already generated with <code>get_refresh_token.py</code> directly.",
+    "ruvic.probar": "Save and click <span class=\"ruvic-button\">Test connection</span> — the platform will confirm the email of the authorized account.",
+    "ph.form": "[ Screenshot: Drive (OAuth2) connector form in Settings → Connectors — replace with assets/img/drive-oauth-form.png ]",
+    "section.verificacion": "Verification",
+    "verif1.title": "Successful connection test.",
+    "verif1.body": "The <em>Test connection</em> button should return: <em>\"Successful connection to the Drive of youremail@gmail.com\"</em>. The connector card switches to <strong>Configured</strong>.",
+    "verif2.title": "Minimal test automation.",
+    "verif2.body": "Open a new conversation with the agent and ask:",
+    "verif2.quote": "<em>\"List the last 5 files in my Drive.\"</em>",
+    "verif2.after": "If the agent replies with real files from your account, the connection is fully operational.",
+    "section.solucion_problemas": "Troubleshooting",
+    "table.sintoma": "Message / symptom",
+    "table.causa": "Likely cause and fix",
+    "prob1.s": "\"Error 403: access_denied\" when authorizing",
+    "prob1.f": "If you use \"Use your own credentials\" and the OAuth app is in Testing mode, your email must be added under <strong>Test users</strong> in the consent screen (Google Cloud Console).",
+    "prob2.s": "\"The Google Drive API is not enabled in the Google Cloud project…\"",
+    "prob2.f": "The Google Drive API isn't enabled in the project (step 2 of the previous section, only applies if you use your own credentials). The connector's message includes the direct activation link; enable it and wait 1-2 minutes.",
+    "prob3.s": "\"Authentication failed: the refresh token may be revoked, expired…\"",
+    "prob3.f": "The user revoked access at <a href=\"https://myaccount.google.com/permissions\" target=\"_blank\" rel=\"noopener\">myaccount.google.com/permissions</a>, changed their password, or 6 months passed without use with an app in Testing mode. Fix: re-authorize the connector in Settings → Connectors.",
+    "prob4.s": "\"Drive API did not respond correctly (HTTP 429)\"",
+    "prob4.f": "Temporary API quota limit. This is transient; the agent can retry in a few seconds.",
+    "prob5.s": "Connector shows \"Not configured\" after saving",
+    "prob5.f": "A required field was left empty, or the Authorize step wasn't completed. Open it again and complete the flow.",
+    "section.faq_seguridad": "FAQ and security notes",
+    "faq1.q": "How sensitive is the refresh token?",
+    "faq1.a": "It grants full read and write access to your Drive until you revoke it. Treat it like a password — never share it over chat, email, or screenshots. The platform stores it encrypted.",
+    "faq2.q": "Can I use it with several accounts at once?",
+    "faq2.a": "Yes, but each account needs its <strong>own instance</strong> of the connector (authorized separately). If you need to manage many users of the same Workspace domain without repeating the authorization one by one, use the <strong>Drive (Google Workspace — service account)</strong> connector instead.",
+    "faq3.q": "Can the agent delete or overwrite files?",
+    "faq3.a": "The connector only exposes <code>file.list</code>, <code>file.read</code>, <code>file.download</code> and <code>file.upload</code> — it does not expose deletion or overwriting. The underlying scope would technically allow it, but the generated code doesn't include those operations unless explicitly requested and the connector is extended.",
+    "faq4.q": "How do I revoke access?",
+    "faq4.a": "Go to <a href=\"https://myaccount.google.com/permissions\" target=\"_blank\" rel=\"noopener\">myaccount.google.com/permissions</a>, find the authorized app and remove its access. You can also simply delete the connector instance in Settings → Connectors.",
+    "callout.practicas.title": "Best practices",
+    "callout.practicas.body": "Use the \"Authorize with Google\" mode unless you have a concrete reason to use your own OAuth app; periodically review at myaccount.google.com/permissions which apps have access to your account; and revoke access for instances you no longer use."
+  }
+};
+    /* El portal aplica el idioma del usuario (localStorage ruvic-docs-lang)
+       y actualiza [data-i18n], [data-i18n-placeholder] y [data-i18n-alt]. */
+  </script>
 </body>
 </html>
