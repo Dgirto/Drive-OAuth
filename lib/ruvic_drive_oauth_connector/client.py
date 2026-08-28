@@ -209,6 +209,12 @@ class DriveOAuthClient:
                 .list(q=query or None, pageSize=max_results, fields=f"files({_FILE_FIELDS})")
                 .execute(num_retries=1)
             )
+        except (RefreshError, GoogleAuthError) as exc:
+            raise DriveOAuthAuthError(
+                f"No se pudo autenticar: el token OAuth/credenciales pueden "
+                f"estar revocados, vencidos o ser inválidos. Vuelve a "
+                f"autorizar el conector. Detalle: {exc}"
+            ) from exc
         except HttpError as exc:
             raise _wrap_http_error(exc) from exc
 
@@ -236,6 +242,12 @@ class DriveOAuthClient:
         service = self._get_service()
         try:
             f = service.files().get(fileId=file_id, fields=_FILE_FIELDS).execute(num_retries=1)
+        except (RefreshError, GoogleAuthError) as exc:
+            raise DriveOAuthAuthError(
+                f"No se pudo autenticar: el token OAuth/credenciales pueden "
+                f"estar revocados, vencidos o ser inválidos. Vuelve a "
+                f"autorizar el conector. Detalle: {exc}"
+            ) from exc
         except HttpError as exc:
             raise _wrap_http_error(exc) from exc
         return _format_file(f)
@@ -265,6 +277,12 @@ class DriveOAuthClient:
         service = self._get_service()
         try:
             meta = service.files().get(fileId=file_id, fields="mimeType, name").execute(num_retries=1)
+        except (RefreshError, GoogleAuthError) as exc:
+            raise DriveOAuthAuthError(
+                f"No se pudo autenticar: el token OAuth/credenciales pueden "
+                f"estar revocados, vencidos o ser inválidos. Vuelve a "
+                f"autorizar el conector. Detalle: {exc}"
+            ) from exc
         except HttpError as exc:
             raise _wrap_http_error(exc) from exc
 
@@ -338,6 +356,12 @@ class DriveOAuthClient:
                 .create(body=file_metadata, media_body=media, fields=_FILE_FIELDS)
                 .execute(num_retries=1)
             )
+        except (RefreshError, GoogleAuthError) as exc:
+            raise DriveOAuthAuthError(
+                f"No se pudo autenticar: el token OAuth/credenciales pueden "
+                f"estar revocados, vencidos o ser inválidos. Vuelve a "
+                f"autorizar el conector. Detalle: {exc}"
+            ) from exc
         except HttpError as exc:
             raise _wrap_http_error(exc) from exc
         self._logger.info("Archivo '%s' subido a Drive", created.get("name"))
