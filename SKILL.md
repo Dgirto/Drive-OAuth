@@ -6,8 +6,8 @@ description: >
   o de un usuario individual de Google Workspace, vía OAuth2 con
   refresh token - buscar/listar archivos con filtros (list_files), leer
   los metadatos de un archivo (get_file), descargar el contenido de un
-  archivo (download_file) y subir un archivo local a Drive
-  (upload_file). Úsala cuando el usuario pida buscar, listar, leer,
+  archivo (download_file), subir un archivo local a Drive
+  (upload_file) y crear carpetas (create_folder). Úsala cuando el usuario pida buscar, listar, leer,
   descargar o subir archivos en SU PROPIO Drive personal o corporativo,
   autorizado individualmente. Para administrar el Drive de varios
   usuarios de un mismo dominio Workspace con una sola credencial, usa
@@ -95,6 +95,16 @@ result = client.upload_file(
     name="Reporte mensual.pdf",
     parent_folder_id="1xYzCarpetaDestino",  # opcional
 )
+```
+
+## Capacidad 5 — Crear una carpeta
+
+```python
+carpeta = client.create_folder(
+    "Reportes 2026",
+    parent_folder_id="1xYzCarpetaPadre",  # opcional (default: raíz de Mi unidad)
+)
+client.upload_file("/tmp/reporte.pdf", parent_folder_id=carpeta["id"])
 ```
 
 ## Manejo de errores

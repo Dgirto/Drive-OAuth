@@ -7,6 +7,7 @@ Capacidades:
 - get_file():        leer los metadatos de un archivo.
 - download_file():   descargar el contenido de un archivo a disco local.
 - upload_file():     subir un archivo local a Drive.
+- create_folder():   crear una carpeta.
 
 Las credenciales SIEMPRE provienen de variables de entorno
 RUVIC_DRIVE_OAUTH_* (ver config.DriveOAuthConfig.from_env). Prohibido
@@ -39,6 +40,7 @@ _TOKEN_URI = "https://oauth2.googleapis.com/token"
 _SCOPES = ["https://www.googleapis.com/auth/drive"]
 _MAX_UPLOAD_BYTES = 20 * 1024 * 1024
 _FILE_FIELDS = "id, name, mimeType, size, modifiedTime, webViewLink, parents, owners(emailAddress)"
+_FOLDER_MIME = "application/vnd.google-apps.folder"
 
 
 def _service_disabled_info(exc: HttpError) -> tuple[str, str] | None:
@@ -365,6 +367,47 @@ class DriveOAuthClient:
         except HttpError as exc:
             raise _wrap_http_error(exc) from exc
         self._logger.info("Archivo '%s' subido a Drive", created.get("name"))
+        return _format_file(created)
+
+    # ------------------------------------------------------------------ #
+    # Capacidad 5 — Crear una carpeta
+    # ------------------------------------------------------------------ #
+
+    def create_folder(self, name: str, parent_folder_id: str | None = None) -> dict[str, Any]:
+        """Crea una carpeta en el Drive del usuario autorizado.
+
+        Args:
+            name: nombre de la carpeta nueva.
+            parent_folder_id: ID de la carpeta contenedora (default: raíz de Mi unidad).
+
+        Returns:
+            Dict con: id, name, mime_type, web_view_link.
+
+        Ejemplo:
+            >>> client.create_folder("Reportes 2026")
+            {'id': '1xYz', 'name': 'Reportes 2026', 'mime_type': 'application/vnd.google-apps.folder', ...}
+        """
+        if not isinstance(name, str) or not name.strip():
+            raise DriveOAuthDataError(f"name debe ser un string no vacío, no {name!r}.")
+        file_metadata: dict[str, Any] = {"name": name, "mimeType": _FOLDER_MIME}
+        if parent_folder_id:
+            file_metadata["parents"] = [parent_folder_id]
+        service = self._get_service()
+        try:
+            created = (
+                service.files()
+                .create(body=file_metadata, fields=_FILE_FIELDS)
+                .execute(num_retries=1)
+            )
+        except (RefreshError, GoogleAuthError) as exc:
+            raise DriveOAuthAuthError(
+                f"No se pudo autenticar: el token OAuth/credenciales pueden "
+                f"estar revocados, vencidos o ser inválidos. Vuelve a "
+                f"autorizar el conector. Detalle: {exc}"
+            ) from exc
+        except HttpError as exc:
+            raise _wrap_http_error(exc) from exc
+        self._logger.info("Carpeta '%s' creada en Drive", created.get("name"))
         return _format_file(created)
 
 

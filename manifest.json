@@ -139,7 +139,7 @@
     }
   ],
   "env_prefix": "RUVIC_DRIVE_OAUTH_",
-  "operations": ["file.list", "file.read", "file.download", "file.upload"],
+  "operations": ["file.list", "file.read", "file.download", "file.upload", "folder.create"],
   "test_connection": true,
   "docs": {
     "skill": "SKILL.md",

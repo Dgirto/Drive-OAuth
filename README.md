@@ -94,8 +94,8 @@ archivo inexistente) y verifica que los mensajes sean claros.
 
 - `upload_file` rechaza archivos mayores a **20 MB**; sin soporte de
   subida por partes (resumable) en esta versión.
-- El conector solo expone `file.list`, `file.read`, `file.download` y
-  `file.upload` — no incluye eliminar, renombrar, mover ni compartir
+- El conector solo expone `file.list`, `file.read`, `file.download`,
+  `file.upload` y `folder.create` — no incluye eliminar, renombrar, mover ni compartir
   archivos, aunque el scope `drive` técnicamente lo permitiría.
 - `download_file` exporta los archivos nativos de Google siempre a
   **PDF**; no soporta otros formatos de exportación.

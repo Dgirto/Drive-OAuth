@@ -62,6 +62,10 @@
             <td><code>file.upload</code></td>
             <td data-i18n="op.upload">Sube un archivo local a tu Drive (máx. 20 MB)</td>
           </tr>
+          <tr>
+            <td><code>folder.create</code></td>
+            <td data-i18n="op.folder">Crea una carpeta (opcionalmente dentro de otra)</td>
+          </tr>
         </tbody>
       </table>
 
@@ -123,7 +127,7 @@
     <section>
       <h2 id="permisos" data-i18n="section.permisos">Permisos requeridos</h2>
 
-      <p data-i18n="permisos.intro">El conector solicita el scope completo de Drive para poder listar, leer, descargar y subir archivos.</p>
+      <p data-i18n="permisos.intro">El conector solicita el scope completo de Drive para poder listar, leer, descargar y subir archivos, y crear carpetas.</p>
 
       <table>
         <thead>
@@ -135,7 +139,7 @@
         <tbody>
           <tr>
             <td><code>drive</code></td>
-            <td data-i18n="scope.drive">Buscar y listar archivos (<code>file.list</code>), leer metadatos (<code>file.read</code>), descargar (<code>file.download</code>) y subir archivos (<code>file.upload</code>)</td>
+            <td data-i18n="scope.drive">Buscar y listar archivos (<code>file.list</code>), leer metadatos (<code>file.read</code>), descargar (<code>file.download</code>), subir archivos (<code>file.upload</code>) y crear carpetas (<code>folder.create</code>)</td>
           </tr>
           <tr>
             <td><code>openid</code>, <code>email</code></td>
@@ -251,7 +255,7 @@
       <p data-i18n="faq2.a">Sí, pero cada correo necesita su <strong>propia instancia</strong> del conector (autorizada por separado). Si necesitas administrar muchos usuarios de un mismo dominio Workspace sin repetir la autorización uno por uno, usa el conector <strong>Drive (Google Workspace — cuenta de servicio)</strong> en su lugar.</p>
 
       <h3 data-i18n="faq3.q">¿El agente puede eliminar o sobrescribir archivos?</h3>
-      <p data-i18n="faq3.a">El conector solo expone <code>file.list</code>, <code>file.read</code>, <code>file.download</code> y <code>file.upload</code> — no expone eliminación ni sobrescritura. El scope subyacente sí lo permitiría técnicamente, pero el código generado no incluye esas operaciones a menos que se pidan explícitamente y se extienda el conector.</p>
+      <p data-i18n="faq3.a">El conector solo expone <code>file.list</code>, <code>file.read</code>, <code>file.download</code>, <code>file.upload</code> y <code>folder.create</code> — no expone eliminación ni sobrescritura. El scope subyacente sí lo permitiría técnicamente, pero el código generado no incluye esas operaciones a menos que se pidan explícitamente y se extienda el conector.</p>
 
       <h3 data-i18n="faq4.q">¿Cómo revoco el acceso?</h3>
       <p data-i18n="faq4.a">Ve a <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">myaccount.google.com/permissions</a>, busca la app autorizada y quita el acceso. También puedes simplemente eliminar la instancia del conector en Settings → Conectores.</p>
@@ -289,6 +293,7 @@
     "op.read": "Lee los metadatos de un archivo (nombre, tipo, dueño, tamaño, etc.)",
     "op.download": "Descarga el contenido de un archivo a disco local",
     "op.upload": "Sube un archivo local a tu Drive (máx. 20 MB)",
+    "op.folder": "Crea una carpeta (opcionalmente dentro de otra)",
     "callout.varios.title": "¿Necesitas administrar varios buzones de un dominio Workspace?",
     "callout.varios.body": "Este conector solo autoriza <strong>una cuenta a la vez</strong>. Si tu caso es \"una empresa, varios usuarios, una sola credencial administrada por TI\", usa en su lugar el conector <strong>Drive (Google Workspace — cuenta de servicio)</strong>.",
     "section.prerrequisitos": "Prerrequisitos",
@@ -310,10 +315,10 @@
     "step4.after": "Copia el <strong>Client ID</strong> y <strong>Client Secret</strong> generados.",
     "ph.client": "[ Captura: pantalla de credenciales de Google Cloud Console con el cliente OAuth creado — reemplazar por assets/img/drive-oauth-client.png ]",
     "section.permisos": "Permisos requeridos",
-    "permisos.intro": "El conector solicita el scope completo de Drive para poder listar, leer, descargar y subir archivos.",
+    "permisos.intro": "El conector solicita el scope completo de Drive para poder listar, leer, descargar y subir archivos, y crear carpetas.",
     "table.scope": "Scope",
     "table.scope_uso": "Para qué lo usa el conector",
-    "scope.drive": "Buscar y listar archivos (<code>file.list</code>), leer metadatos (<code>file.read</code>), descargar (<code>file.download</code>) y subir archivos (<code>file.upload</code>)",
+    "scope.drive": "Buscar y listar archivos (<code>file.list</code>), leer metadatos (<code>file.read</code>), descargar (<code>file.download</code>), subir archivos (<code>file.upload</code>) y crear carpetas (<code>folder.create</code>)",
     "scope.openid": "Identificar qué cuenta autorizó el conector (mostrado en la UI de Ruvic)",
     "callout.acceso.title": "Este scope da acceso completo de lectura y escritura",
     "callout.acceso.body": "A diferencia de scopes más restringidos como <code>drive.file</code> (solo archivos creados por la app), <code>drive</code> permite ver, descargar, modificar y subir <strong>cualquier</strong> archivo al que la cuenta autorizada tenga acceso.",
@@ -355,7 +360,7 @@
     "faq2.q": "¿Puedo usarlo con varios correos a la vez?",
     "faq2.a": "Sí, pero cada correo necesita su <strong>propia instancia</strong> del conector (autorizada por separado). Si necesitas administrar muchos usuarios de un mismo dominio Workspace sin repetir la autorización uno por uno, usa el conector <strong>Drive (Google Workspace — cuenta de servicio)</strong> en su lugar.",
     "faq3.q": "¿El agente puede eliminar o sobrescribir archivos?",
-    "faq3.a": "El conector solo expone <code>file.list</code>, <code>file.read</code>, <code>file.download</code> y <code>file.upload</code> — no expone eliminación ni sobrescritura. El scope subyacente sí lo permitiría técnicamente, pero el código generado no incluye esas operaciones a menos que se pidan explícitamente y se extienda el conector.",
+    "faq3.a": "El conector solo expone <code>file.list</code>, <code>file.read</code>, <code>file.download</code>, <code>file.upload</code> y <code>folder.create</code> — no expone eliminación ni sobrescritura. El scope subyacente sí lo permitiría técnicamente, pero el código generado no incluye esas operaciones a menos que se pidan explícitamente y se extienda el conector.",
     "faq4.q": "¿Cómo revoco el acceso?",
     "faq4.a": "Ve a <a href=\"https://myaccount.google.com/permissions\" target=\"_blank\" rel=\"noopener\">myaccount.google.com/permissions</a>, busca la app autorizada y quita el acceso. También puedes simplemente eliminar la instancia del conector en Settings → Conectores.",
     "callout.practicas.title": "Buenas prácticas",
@@ -385,6 +390,7 @@
     "op.read": "Reads a file's metadata (name, type, owner, size, etc.)",
     "op.download": "Downloads a file's content to local disk",
     "op.upload": "Uploads a local file to your Drive (max 20 MB)",
+    "op.folder": "Creates a folder (optionally inside another one)",
     "callout.varios.title": "Need to manage several mailboxes in a Workspace domain?",
     "callout.varios.body": "This connector only authorizes <strong>one account at a time</strong>. If your case is \"one company, several users, a single IT-managed credential\", use the <strong>Drive (Google Workspace — service account)</strong> connector instead.",
     "section.prerrequisitos": "Prerequisites",
@@ -406,10 +412,10 @@
     "step4.after": "Copy the generated <strong>Client ID</strong> and <strong>Client Secret</strong>.",
     "ph.client": "[ Screenshot: Google Cloud Console credentials screen with the created OAuth client — replace with assets/img/drive-oauth-client.png ]",
     "section.permisos": "Required permissions",
-    "permisos.intro": "The connector requests the full Drive scope in order to list, read, download and upload files.",
+    "permisos.intro": "The connector requests the full Drive scope in order to list, read, download and upload files, and create folders.",
     "table.scope": "Scope",
     "table.scope_uso": "Why the connector needs it",
-    "scope.drive": "Search and list files (<code>file.list</code>), read metadata (<code>file.read</code>), download (<code>file.download</code>) and upload files (<code>file.upload</code>)",
+    "scope.drive": "Search and list files (<code>file.list</code>), read metadata (<code>file.read</code>), download (<code>file.download</code>), upload files (<code>file.upload</code>) and create folders (<code>folder.create</code>)",
     "scope.openid": "Identify which account authorized the connector (shown in the Ruvic UI)",
     "callout.acceso.title": "This scope grants full read and write access",
     "callout.acceso.body": "Unlike more restricted scopes such as <code>drive.file</code> (only files created by the app), <code>drive</code> allows viewing, downloading, modifying and uploading <strong>any</strong> file the authorized account has access to.",
@@ -451,7 +457,7 @@
     "faq2.q": "Can I use it with several accounts at once?",
     "faq2.a": "Yes, but each account needs its <strong>own instance</strong> of the connector (authorized separately). If you need to manage many users of the same Workspace domain without repeating the authorization one by one, use the <strong>Drive (Google Workspace — service account)</strong> connector instead.",
     "faq3.q": "Can the agent delete or overwrite files?",
-    "faq3.a": "The connector only exposes <code>file.list</code>, <code>file.read</code>, <code>file.download</code> and <code>file.upload</code> — it does not expose deletion or overwriting. The underlying scope would technically allow it, but the generated code doesn't include those operations unless explicitly requested and the connector is extended.",
+    "faq3.a": "The connector only exposes <code>file.list</code>, <code>file.read</code>, <code>file.download</code>, <code>file.upload</code> and <code>folder.create</code> — it does not expose deletion or overwriting. The underlying scope would technically allow it, but the generated code doesn't include those operations unless explicitly requested and the connector is extended.",
     "faq4.q": "How do I revoke access?",
     "faq4.a": "Go to <a href=\"https://myaccount.google.com/permissions\" target=\"_blank\" rel=\"noopener\">myaccount.google.com/permissions</a>, find the authorized app and remove its access. You can also simply delete the connector instance in Settings → Connectors.",
     "callout.practicas.title": "Best practices",
